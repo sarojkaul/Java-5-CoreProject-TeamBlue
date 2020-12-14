@@ -10,7 +10,9 @@ public class Main {
         CancellationRepository cancellationRepository =
                 new CancellationRepository(url, properties);
 
-        Menu menu = new Menu(cancellationRepository);
+        GuestRepo guestRepo = new GuestRepo(url, properties);
+
+        Menu menu = new Menu(cancellationRepository, guestRepo);
         menu.printHeader();
         menu.display_menu();
         menu.execute_menu();

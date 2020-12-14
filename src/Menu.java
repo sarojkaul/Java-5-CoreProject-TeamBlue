@@ -1,10 +1,12 @@
 import java.util.Scanner;
 
 public class Menu {
-    private CancellationRepository cancellationRepository;
+    private final CancellationRepository cancellationRepository;
+    private final GuestRepo guestRepo;
 
-    public Menu(CancellationRepository cancellationRepository) {
+    public Menu(CancellationRepository cancellationRepository, GuestRepo guestRepo) {
         this.cancellationRepository = cancellationRepository;
+        this.guestRepo = guestRepo;
     }
 
     public void display_menu() {
@@ -47,7 +49,7 @@ public class Menu {
                             break;
                         }
                         case 6: {
-                            System.out.println("All_Guests Detail");
+                            guestRepo.displayAllGuests();
                             break;
                         }
                         case 7: {
