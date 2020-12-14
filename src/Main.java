@@ -1,7 +1,19 @@
+import java.util.Properties;
+
 public class Main {
     public static void main(String[] args) {
-        Menu menu = new Menu();
+        String url = "jdbc:mysql://localhost:3306/hotel_management_team_blue";
+        Properties properties = new Properties();
+        properties.put("user", "root");
+        properties.put("password", "");
+
+        CancellationRepository cancellationRepository =
+                new CancellationRepository(url, properties);
+
+        Menu menu = new Menu(cancellationRepository);
+        menu.printHeader();
         menu.display_menu();
         menu.execute_menu();
+
     }
 }
