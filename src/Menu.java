@@ -45,7 +45,7 @@ public class Menu {
                             break;
                         }
                         case 4: {
-                            methodsForMenu.All_rooms();
+
                             //need to add here method for avaiable rooms_Id
                             methodsForMenu.Add_new_reservation();
                             System.out.println("");
@@ -66,14 +66,14 @@ public class Menu {
 
                         case 8: {
                             System.out.println("Exit");
-                            n = -1;
+                            n = -2;
                         }
 
                     }
                 } else {
                     System.out.println("Enter Valid number");
                 }
-            } while (n > 0);
+            } while (n == 0);
             System.out.println("End");
         } catch (NumberFormatException e) {
             System.out.println("Enter numeric value");

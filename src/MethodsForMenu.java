@@ -25,7 +25,8 @@ public class MethodsForMenu {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter Check_in Date :");
+        System.out.println("Enter Check_in Date (\"MM/dd/yyyy\") :");
+
         String check_in_dateInput = scanner.nextLine();
         //change String into DATE datatype
         System.out.println(check_in_dateInput);
@@ -84,28 +85,57 @@ public class MethodsForMenu {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    } // end All_rooms
-    /*public void cancellation(){
-        try {
-            Class.forName(JDBC_Driver);
-            //Step:3 OPen a connection
-            System.out.println("****** Add New Booking ********");
-            connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
-            Statement statement = connection.createStatement();
-            String sql;
-            // Query for display all students
-            sql = "INSERT INTO `cancellation`(`Cancellation_ID`, `Cancellation_Date`, `Booking_ID`) VALUES(?,?,?)";
+    }
+        // end All_rooms
+        public void cancellation () {
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter Cancellation Id: ");
-            int cancellation_Id = scanner.nextInt();
-            System.out.println("Enter cancellation date: ");
+                System.out.println("****** Cancel Booking ********");
+            try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties))
+            {
+                Statement statement = connection.createStatement();
+                String sql;
+                // Query for display all students
+                sql = "INSERT INTO `cancellation`(`Cancellation_ID`, `Cancellation_Date`, `Booking_ID`) VALUES(?,?,?)";
 
-            System.out.println("Enter Booking_ID: ");
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Enter Cancellation Id: ");
+                int cancellation_Id = scanner.nextInt();
+                System.out.println("Enter cancellation date: ");
+               String cancellation_date = scanner.nextLine();
+                LocalDate Cancellation_date = LocalDate.parse(cancellation_date, DATE_INPUT_FORMAT);
+                System.out.println(Cancellation_date);
+                System.out.println("Enter Booking_ID want to cancel: ");
+                int booking_id = scanner.nextInt();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, cancellation_Id);
+               preparedStatement.setDate(2, Date.valueOf(cancellation_date));
+                preparedStatement.setInt(3, booking_id);
+                preparedStatement.executeUpdate();
 
+                ResultSet generatedkey = preparedStatement.getGeneratedKeys();
+                if(!generatedkey.next()){
+                    System.err.println("Database did not return generated booking ID");
+                } else {
+                    int generatedCancellationId = generatedkey.getInt(1);
+                    System.out.println("Saved booking with booking ID " + generatedCancellationId);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        /*public void All_booking(){
+            System.out.println("****** All_Bookings *******");
+            try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties))
+            {
+                Statement statement = connection.createStatement();
+                String sql;
+                // Query for display all students
+                sql = "
         }*/
+    }
 
-}
+
 
 
 
