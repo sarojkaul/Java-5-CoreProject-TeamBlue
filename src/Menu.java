@@ -9,8 +9,7 @@ public void display_menu(){
     System.out.println("4) Add new Reservation");
     System.out.println("5) Cancel Reservation");
     System.out.println("6) All_Guests Detail");
-    System.out.println("7 Display all rooms");
-    System.out.println("8) Exit");
+    System.out.println("7) Exit");
 }
     public void execute_menu(){
         int n = 0;
@@ -19,7 +18,7 @@ public void display_menu(){
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your choice: ");
                 int x = user_input.nextInt();
-                if (x >= 0 && x <= 8) {
+                if (x >= 0 && x <= 7) {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
@@ -34,11 +33,7 @@ public void display_menu(){
                             break;
                         }
                         case 4: {
-                            MethodsForMenu methodsForMenu = new MethodsForMenu();
-                            methodsForMenu.All_rooms();
-                           //need to add here method for avaiable rooms_Id
-                           // methodsForMenu.Add_new_reservation();
-                            System.out.println("");
+                            System.out.println("Add new Reservation");
                             break;
                         }
                         case 5: {
@@ -49,13 +44,7 @@ public void display_menu(){
                             System.out.println("All_Guests Detail");
                             break;
                         }
-                        case 7:{
-                            MethodsForMenu methodsForMenu = new MethodsForMenu();
-                            methodsForMenu.All_rooms();
-                            break;
-                        }
-
-                        case 8: {
+                        case 7: {
                             System.out.println("Exit");
                             n =-1;
                         }
@@ -70,5 +59,5 @@ public void display_menu(){
             System.out.println("Enter numeric value");
         }
     }
- }
+}
 

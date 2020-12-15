@@ -1,10 +1,7 @@
 public class Main {
-
     public static void main(String[] args) {
-
-        MethodsForMenu methodsForMenu = new MethodsForMenu();
-methodsForMenu.Add_new_reservation();
-
-
+        Menu menu = new Menu();
+        menu.display_menu();
+        menu.execute_menu();
     }
 }
