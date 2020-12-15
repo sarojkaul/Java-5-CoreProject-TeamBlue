@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class Guest {
 
     private int guestID;
@@ -9,10 +11,10 @@ public class Guest {
     private String phone;
     private String passportID;
     private String nationality;
-    private String birthdate;
+    private Date birthdate;
 
     // constructor
-    public Guest(int guestID, String name, String surname, String gender, String email, String adress, String phone, String passportID, String nationality, String birthdate) {
+    public Guest(int guestID, String name, String surname, String gender, String email, String adress, String phone, String passportID, String nationality, Date birthdate) {
         this.guestID = guestID;
         this.name = name;
         this.surname = surname;
@@ -62,7 +64,7 @@ public class Guest {
         this.nationality = nationality;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -102,7 +104,7 @@ public class Guest {
         return nationality;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 

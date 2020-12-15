@@ -2,6 +2,6 @@ public enum roomCategory {
 
     SINGLE,
     DOUBLE,
-    SUPERIORDOUBLE,
+    SUPERIOR,
     SUITE
 }
