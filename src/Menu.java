@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Menu {
@@ -19,8 +20,9 @@ public class Menu {
         System.out.println("4) Add new Reservation");
         System.out.println("5) Cancel Reservation");
         System.out.println("6) All_Guests Detail");
-        System.out.println("7 Display all rooms");
-        System.out.println("8) Exit");
+        System.out.println("7) Display all rooms");
+        System.out.println("8) Create All Guest Report");
+        System.out.println("9) Exit");
     }
 
     public void execute_menu() {
@@ -30,7 +32,7 @@ public class Menu {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your choice: ");
                 int x = user_input.nextInt();
-                if (x >= 0 && x <= 8) {
+                if (x >= 0 && x <= 9) {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
@@ -46,7 +48,7 @@ public class Menu {
                         }
                         case 4: {
 
-                            //need to add here method for avaiable rooms_Id
+                            //need to add here method for available rooms_Id
                             methodsForMenu.Add_new_reservation();
                             System.out.println("");
                             break;
@@ -64,8 +66,12 @@ public class Menu {
                             methodsForMenu.All_rooms();
                             break;
                         }
-
                         case 8: {
+                            createAllGuestReport();
+                            break;
+                        }
+
+                        case 9: {
                             System.out.println("Exit");
                             n = -2;
                         }
@@ -83,6 +89,13 @@ public class Menu {
 
     private void displayAllCancelledReservations() {
         cancellationRepository.displayAllCancellation();
+    }
+
+    private void createAllGuestReport(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input the path of the output file: ");
+        File outputFileName = new File(scanner.nextLine());
+        guestRepo.createAllGuestReport(outputFileName);
     }
 
     public void printHeader() {
