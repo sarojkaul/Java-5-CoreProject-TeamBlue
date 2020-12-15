@@ -1,10 +1,12 @@
 import java.sql.*;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.Scanner;
 
 public class MethodsForMenu {
 
+    public static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("MM/dd/yyyy");
     private final String databaseUrl;
     private final Properties connectionProperties;
 
@@ -16,49 +18,52 @@ public class MethodsForMenu {
     public void Add_new_reservation() {
         //Step:3 Open a connection
         System.out.println("****** Add New Booking ********");
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
 
-            String sql;
-            // Query for display all students
-            sql = "INSERT INTO `booking`(`Booking_ID`,`Check_in_Date`, `Check_out_Date`, `Guest_ID`, `Room_ID`)VALUES(?,?,?,?,?)";
+        // Query for display all students
+        final String sql = "INSERT INTO `booking`(`Check_in_Date`, `Check_out_Date`, `Guest_ID`, `Room_ID`)" +
+                " VALUES(?,?,?,?)";
 
+        Scanner scanner = new Scanner(System.in);
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter Booking Id: ");
-            int booking_Id = scanner.nextInt();
+        System.out.println("Enter Check_in Date :");
+        String check_in_dateInput = scanner.nextLine();
+        //change String into DATE datatype
+        System.out.println(check_in_dateInput);
 
-            System.out.println("Enter Check_in Date :");
-            String check_in_date = scanner.nextLine();
-            //change String into DATE datatype
-            scanner.nextLine();
-            System.out.println(check_in_date);
+        LocalDate checkInDate = LocalDate.parse(check_in_dateInput, DATE_INPUT_FORMAT);
+        System.out.println("Enter check_out_Date");
+        String check_out_dateInput = scanner.nextLine();
+        LocalDate check_out_date = LocalDate.parse(check_out_dateInput, DATE_INPUT_FORMAT);
+        System.out.println("Enter Guest_Id: ");
+        int guest_Id = scanner.nextInt();
+        System.out.println("Enter Room_Id: ");
+        int room_Id = scanner.nextInt();
 
-            Date check_in_date1 = (Date) new SimpleDateFormat("MM/dd/yyyy").parse(check_in_date);
-            System.out.println("Enter check_out_Date");
-            String check_out_date = scanner.nextLine();
-            Date check_out_date1 = (Date) new SimpleDateFormat("MM/dd/yyyy").parse(check_out_date);
-            System.out.println("Enter Guest_Id: ");
-            int guest_Id = scanner.nextInt();
-            System.out.println("Enter Room_Id: ");
-            int room_Id = scanner.nextInt();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, booking_Id);
-            preparedStatement.setDate(2, check_in_date1);
-            preparedStatement.setDate(3, check_out_date1);
-            preparedStatement.setInt(4, guest_Id);
-            preparedStatement.setInt(5, room_Id);
+        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            preparedStatement.setDate(1, Date.valueOf(checkInDate));
+            preparedStatement.setDate(2, Date.valueOf(check_out_date));
+            preparedStatement.setInt(3, guest_Id);
+            preparedStatement.setInt(4, room_Id);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException sql) {
-            sql.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (!generatedKeys.next()) {
+                // Should never happen
+                System.err.println("Database did not return generated booking ID");
+            } else {
+                int generatedBookingId = generatedKeys.getInt(1);
+                System.out.println("Saved booking with booking ID " + generatedBookingId);
+            }
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
 
         }//end try
 
         System.out.println("Successfully updated!!");
     } // end Add_new_reservation
-
 
     public void All_rooms() {
         //Step:3 Open a connection
