@@ -3,8 +3,8 @@ import java.time.LocalDate;
 import java.util.Properties;
 
 public class CancellationRepository {
-    private String databaseUrl;
-    private Properties connectionProperties;
+    private final String databaseUrl;
+    private final Properties connectionProperties;
 
     public CancellationRepository(String databaseUrl, Properties connectionProperties) {
         this.databaseUrl = databaseUrl;

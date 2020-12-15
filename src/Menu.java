@@ -4,10 +4,12 @@ public class Menu {
 
     private final CancellationRepository cancellationRepository;
     private final GuestRepo guestRepo;
+    private final MethodsForMenu methodsForMenu;
 
-    public Menu(CancellationRepository cancellationRepository, GuestRepo guestRepo) {
+    public Menu(CancellationRepository cancellationRepository, GuestRepo guestRepo, MethodsForMenu methodsForMenu) {
         this.cancellationRepository = cancellationRepository;
         this.guestRepo = guestRepo;
+        this.methodsForMenu = methodsForMenu;
     }
 
     public void display_menu() {
@@ -43,7 +45,6 @@ public class Menu {
                             break;
                         }
                         case 4: {
-                            MethodsForMenu methodsForMenu = new MethodsForMenu();
                             methodsForMenu.All_rooms();
                             //need to add here method for avaiable rooms_Id
                             methodsForMenu.Add_new_reservation();
@@ -59,7 +60,6 @@ public class Menu {
                             break;
                         }
                         case 7: {
-                            MethodsForMenu methodsForMenu = new MethodsForMenu();
                             methodsForMenu.All_rooms();
                             break;
                         }
