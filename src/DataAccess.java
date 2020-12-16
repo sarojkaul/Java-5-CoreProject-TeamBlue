@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DataAccess {
 
-    private final String url = "jdbc:mysql://localhost:3306/hotel_management_project";
+    private final String url = "jdbc:mysql://localhost:3306/hotel_management_team_blue";
     private final String user = "root";
     private final String password = "";
     private final Connection connection;

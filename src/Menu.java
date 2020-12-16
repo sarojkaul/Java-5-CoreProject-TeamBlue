@@ -56,7 +56,8 @@ public class Menu {
                             break;
                         }
                         case 5: {
-                            System.out.println("Cancel Reservation");
+                            methodsForMenu.All_booking();
+                            methodsForMenu.cancellation();
                             break;
                         }
                         case 6: {
