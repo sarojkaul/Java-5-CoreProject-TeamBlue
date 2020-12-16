@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Menu {
@@ -15,16 +16,17 @@ public class Menu {
     }
 
     public void display_menu() {
-        System.out.println("1) Display all Available Rooms");
-        System.out.println("2) Display all Booked_Rooms");
-        System.out.println("3) Display all cancelled_Reservations");
-        System.out.println("4) Add new Reservation");
-        System.out.println("5) Cancel Reservation");
-        System.out.println("6) All_Guests Detail");
-        System.out.println("7) Get info of any Guest");
-        System.out.println("8) Display all rooms");
-        System.out.println("9) Display Rooms which are booked for December");
-        System.out.println("10)Exit");
+        System.out.println("1)  Display all Available Rooms");
+        System.out.println("2)  Display all Booked_Rooms");
+        System.out.println("3)  Display all cancelled_Reservations");
+        System.out.println("4)  Add new Reservation");
+        System.out.println("5)  Cancel Reservation");
+        System.out.println("6)  All_Guests Detail");
+        System.out.println("7)  Get info of any Guest");
+        System.out.println("8)  Display all rooms");
+        System.out.println("9)  Display Rooms which are booked for December");
+        System.out.println("10) Create Report with all Guests");
+        System.out.println("11) Exit");
     }
 
     public void execute_menu() {
@@ -34,7 +36,7 @@ public class Menu {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your choice: ");
                 int x = user_input.nextInt();
-                if (x >= 0 && x <= 10) {
+                if (x >= 0 && x <= 11) {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
@@ -80,6 +82,11 @@ public class Menu {
                         }
 
                         case 10: {
+                            createAllGuestReport();
+                            break;
+                        }
+
+                        case 11: {
                             System.out.println("Exit");
                             n = -2;
                         }
@@ -97,6 +104,13 @@ public class Menu {
 
     private void displayAllCancelledReservations() {
         cancellationRepository.displayAllCancellation();
+    }
+
+    private void createAllGuestReport(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input the path of the output file: ");
+        File outputFileName = new File(scanner.nextLine());
+        guestRepo.createAllGuestReport(outputFileName);
     }
 
     public void printHeader() {
