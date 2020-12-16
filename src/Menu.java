@@ -22,7 +22,7 @@ public class Menu {
         System.out.println("5) Cancel Reservation");
         System.out.println("6) All_Guests Detail");
         System.out.println("7  Display all rooms");
-        System.out.println("8) Display Rooms which are booked in this month");
+        System.out.println("8) Display Rooms which are booked for December");
         System.out.println("9) Exit");
     }
 
@@ -53,7 +53,7 @@ public class Menu {
 
                             //need to add here method for avaiable rooms_Id
                             methodsForMenu.Add_new_reservation();
-                            System.out.println("");
+
                             break;
                         }
                         case 5: {
