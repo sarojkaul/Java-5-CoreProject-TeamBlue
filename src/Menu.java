@@ -21,13 +21,14 @@ public class Menu {
         System.out.println("2)  Display all Booked_Rooms");
         System.out.println("3)  Display all cancelled_Reservations");
         System.out.println("4)  Add new Reservation");
-        System.out.println("5)  Cancel Reservation");
-        System.out.println("6)  All_Guests Detail");
-        System.out.println("7)  Get info of any Guest");
-        System.out.println("8)  Display all rooms");
-        System.out.println("9)  Display Rooms which are booked for December");
-        System.out.println("10) Create Report with all Guests");
-        System.out.println("11) Exit");
+        System.out.println("5)  Add new Guest");
+        System.out.println("6)  Cancel Reservation");
+        System.out.println("7)  All_Guests Detail");
+        System.out.println("8)  Get info of any Guest");
+        System.out.println("9)  Display all rooms");
+        System.out.println("10)  Display Rooms which are booked for December");
+        System.out.println("11) Create Report with all Guests");
+        System.out.println("12) Exit");
     }
 
     public void execute_menu() {
@@ -37,7 +38,7 @@ public class Menu {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your choice: ");
                 int x = user_input.nextInt();
-                if (x >= 0 && x <= 11) {
+                if (x >= 0 && x <= 12) {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
@@ -60,34 +61,39 @@ public class Menu {
 
                             break;
                         }
-                        case 5: {
+                        case 5:{
+                            guestRepo.addNewGuest();
+                            break;
+                        }
+                        case 6: {
                             methodsForMenu.All_booking();
                             methodsForMenu.cancellation();
                             break;
                         }
-                        case 6: {
+                        case 7: {
                             guestRepo.displayAllGuests();
                             break;
                         }
-                        case 7: {
+                        case 8: {
                           methodsForMenu.info_guest();
                           break;
                         }
-                        case 8: {
+                        case 9: {
                             methodsForMenu.All_rooms();
                             break;
                         }
-                        case 9: {
+                        
+                        case 10: {
                             methodsForMenu.rooms_12();
                             break;
                         }
 
-                        case 10: {
+                        case 11: {
                             createAllGuestReport();
                             break;
                         }
 
-                        case 11: {
+                        case 12: {
                             System.out.println("Exit");
                             n = -2;
                         }

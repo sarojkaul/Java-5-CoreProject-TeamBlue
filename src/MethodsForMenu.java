@@ -68,6 +68,8 @@ public class MethodsForMenu {
         System.out.println("Successfully updated!!");
     } // end Add_new_reservation
 
+
+
     public void All_rooms() {
         //Step:3 Open a connection
         System.out.println("****** All ROOMS********");
