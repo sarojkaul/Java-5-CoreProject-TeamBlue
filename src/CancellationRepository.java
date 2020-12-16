@@ -1,18 +1,16 @@
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.Properties;
 
 public class CancellationRepository {
-    private final String databaseUrl;
-    private final Properties connectionProperties;
 
-    public CancellationRepository(String databaseUrl, Properties connectionProperties) {
-        this.databaseUrl = databaseUrl;
-        this.connectionProperties = connectionProperties;
+    private final Connection connection;
+
+    public CancellationRepository(Connection connection) {
+        this.connection = connection;
     }
 
     public void displayAllCancellation() {
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
+        try {
             String sql = "SELECT\n" +
                     "    cancellation.Cancellation_ID,\n" +
                     "    cancellation.Cancellation_Date,\n" +

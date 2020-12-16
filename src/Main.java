@@ -1,32 +1,38 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class Main {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        String url = "jdbc:mysql://localhost:3306/hotel_management_project";
+    public static void main(String[] args) {
+        // Please comment out and uncomment the right line if your database has a different name
+        // And don't commit that change!
+        String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_project_team_blue";
         //String url = "jdbc:mysql://localhost:3306/hotel_management_project";
 
-        Properties properties = new Properties();
-        properties.put("user", "root");
-        properties.put("password", "");
+        Properties connectionProperties = new Properties();
+        connectionProperties.put("user", "root");
+        connectionProperties.put("password", "");
 
-        try {
-            CancellationRepository cancellationRepository = new CancellationRepository(url, properties);
-            GuestRepo guestRepo = new GuestRepo(url, properties);
-            MethodsForMenu methodsForMenu = new MethodsForMenu(url, properties);
-            DataAccess dataAccess = new DataAccess();
+        System.out.println("Connecting to database...");
+        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
+            CancellationRepository cancellationRepository = new CancellationRepository(connection);
+            GuestRepo guestRepo = new GuestRepo(connection);
+            MethodsForMenu methodsForMenu = new MethodsForMenu(connection);
+            DataAccess dataAccess = new DataAccess(connection);
 
             Menu menu = new Menu(cancellationRepository, guestRepo, methodsForMenu, dataAccess);
             menu.printHeader();
             menu.display_menu();
             menu.execute_menu();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+
+        } finally {
+            // connection.close() is called by Java before catch- and finally-blocks
+            // https://stackoverflow.com/a/24129101
+            System.out.println("Connection closed");
         }
-
-
-
-
     }
 }

@@ -1,26 +1,12 @@
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class DataAccess {
 
-    private final String url = "jdbc:mysql://localhost:3306/hotel_management_project";
-    private final String user = "root";
-    private final String password = "";
     private final Connection connection;
 
-    public DataAccess() throws SQLException, ClassNotFoundException {
-        java.lang.Class.forName("com.mysql.cj.jdbc.Driver");
-        System.out.println("Connecting to database...");
-        connection = DriverManager.getConnection(url, user, password);
-    }
-
-
-
-    public void closeDB() throws SQLException {
-        System.out.println("Closing connection...");
-        connection.close();
+    public DataAccess(Connection connection) {
+        this.connection = connection;
     }
 
     public ArrayList<Room> getAllRooms() {

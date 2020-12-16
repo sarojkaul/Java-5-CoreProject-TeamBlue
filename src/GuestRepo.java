@@ -1,18 +1,15 @@
 import java.sql.*;
-import java.util.Properties;
 
 public class GuestRepo {
-    private final String databaseUrl;
-    private final Properties connectionProperties;
 
-    public GuestRepo(String databaseUrl, Properties connectionProperties) {
-        this.databaseUrl = databaseUrl;
-        this.connectionProperties = connectionProperties;
+    private final Connection connection;
+
+    public GuestRepo(Connection connection) {
+        this.connection = connection;
     }
 
     public void displayAllGuests() {
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
-
+        try {
             String sql = "SELECT\n" +
                     "    GuestID,\n" +
                     "    NAME,\n" +
