@@ -54,7 +54,7 @@ public class Menu {
                         }
                         case 4: {
 
-                            //need to add here method for avaiable rooms_Id
+                            dataAccess.displayAllFreeRooms();
                             methodsForMenu.Add_new_reservation();
 
                             break;
@@ -69,7 +69,7 @@ public class Menu {
                             break;
                         }
                         case 7: {
-                            System.out.println("Info of any guest");;
+                            methodsForMenu.info_guest();
                             break;
                         }
                         case 8: {

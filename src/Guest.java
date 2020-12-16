@@ -27,6 +27,11 @@ public class Guest {
         this.birthdate = birthdate;
     }
 
+    public Guest(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     // getter | setter
     public void setGuestID(int guestID) {
         this.guestID = guestID;
