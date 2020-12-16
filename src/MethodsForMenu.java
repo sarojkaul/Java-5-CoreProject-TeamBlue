@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MethodsForMenu {
@@ -122,6 +123,9 @@ public class MethodsForMenu {
                 System.out.println("Saved Cancellation with cancellation_ID " + generatedCancellationId);
 
             }
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.err.println("Booking with ID " + booking_id + "is already cancelled");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -131,23 +135,28 @@ public class MethodsForMenu {
         System.out.println("****** All_Bookings Detail *******");
         try {
             Statement statement = connection.createStatement();
-            String sql;
-            // Query for display all students
-            sql = "SELECT booking.Booking_ID, " +
-                    "booking.Check_in_Date, booking.Check_out_Date, " +
-                    "booking.Guest_ID,guest.NAME,guest.Surname,booking.Room_ID " +
-                    "FROM booking INNER JOIN guest on booking.Guest_ID = guest.GuestID";
+            String sql =
+                    "SELECT booking.Booking_ID, " +
+                    " booking.Check_in_Date, booking.Check_out_Date, " +
+                    " booking.Guest_ID,guest.NAME,guest.Surname,booking.Room_ID," +
+                    " cancellation.Cancellation_Date " +
+                    "FROM booking" +
+                    " JOIN guest ON booking.Guest_ID = guest.GuestID" +
+                    " LEFT JOIN cancellation ON cancellation.Booking_ID = booking.Booking_ID";
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("Booking ID | Check-in date | Check-out date | Cancellation Date | Guest ID | Booked by            | Surname              | Booked Room ID ");
+            System.out.println("-----------+---------------+----------------+-------------------+----------+----------------------+----------------------+----------------");
             while (resultSet.next()) {
-                int booking_ID = resultSet.getInt("Booking_ID");
-                Date checkin_Date = resultSet.getDate("Check_in_Date");
-                Date check_outdate = resultSet.getDate("Check_out_Date");
-                int guest_Id = resultSet.getInt("Guest_ID");
-                String guest_name = resultSet.getString("NAME");
+                int bookingId = resultSet.getInt("Booking_ID");
+                Date checkInDate = resultSet.getDate("Check_in_Date");
+                Date checkOutDate = resultSet.getDate("Check_out_Date");
+                int guestId = resultSet.getInt("Guest_ID");
+                String guestName = resultSet.getString("NAME");
                 String surname = resultSet.getString("Surname");
-                int Room_ID = resultSet.getInt("Room_ID");
-                System.out.println("Booking_Id: " + booking_ID + " |" + " Check_in: " + checkin_Date + " | " + " Check_out: " + check_outdate
-                        + " | " + " Guest_Id: " + guest_Id + " | " + " Booked by: " + guest_name + " | " + " Surname: " + surname + " | " + " Booked Room_Id: " + Room_ID);
+                int roomId = resultSet.getInt("Room_ID");
+                Date cancellationDate = resultSet.getDate("Cancellation_Date");
+                System.out.printf("%10d | %13s | %14s | %17s | %8d | %20s | %20s | %14d%n",
+                        bookingId, checkInDate, checkOutDate, Objects.toString(cancellationDate, ""), guestId, guestName, surname, roomId);
             }
 
         } catch (Exception e) {
