@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
         // Please comment out and uncomment the right line if your database has a different name
         // And don't commit that change!
-        //String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_team_blue";
-        String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_project";
+        String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_team_blue";
+        //String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_project";
 
         Properties connectionProperties = new Properties();
         connectionProperties.put("user", "root");
@@ -18,7 +18,7 @@ public class Main {
         try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
             CancellationRepository cancellationRepository = new CancellationRepository(connection);
             GuestRepo guestRepo = new GuestRepo(connection);
-            MethodsForMenu methodsForMenu = new MethodsForMenu(connectionProperties, connection);
+            MethodsForMenu methodsForMenu = new MethodsForMenu(connection);
             DataAccess dataAccess = new DataAccess(connection);
 
             Menu menu = new Menu(cancellationRepository, guestRepo, methodsForMenu, dataAccess);

@@ -3,28 +3,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class MethodsForMenu {
 
     public static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-    private String databaseUrl;
-    private final Properties connectionProperties;
+
     private final Connection connection;
 
-    public MethodsForMenu(String databaseUrl, Properties connectionProperties, Connection connection) {
-        this.databaseUrl = databaseUrl;
-        this.connectionProperties = connectionProperties;
+    public MethodsForMenu(Connection connection) {
         this.connection = connection;
     }
-
-    public MethodsForMenu(Properties connectionProperties, Connection connection) {
-        this.connectionProperties = connectionProperties;
-        this.connection = connection;
-
-    }
-
 
     public void Add_new_reservation() {
         //Step:3 Open a connection
@@ -51,8 +40,7 @@ public class MethodsForMenu {
         System.out.println("Enter Room_Id: ");
         int room_Id = scanner.nextInt();
 
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setDate(1, Date.valueOf(checkInDate));
             preparedStatement.setDate(2, Date.valueOf(check_out_date));
@@ -80,7 +68,7 @@ public class MethodsForMenu {
     public void All_rooms() {
         //Step:3 Open a connection
         System.out.println("****** All ROOMS********");
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
+        try {
             Statement statement = connection.createStatement();
             String sql;
             // Query for display all students
@@ -117,8 +105,7 @@ public class MethodsForMenu {
         System.out.println(Cancellation_date);
         System.out.println("Enter Booking_ID want to cancel: ");
         int booking_id = scanner.nextInt();
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, id);
             preparedStatement.setDate(2, Date.valueOf(Cancellation_date));
             preparedStatement.setInt(3, booking_id);
@@ -139,7 +126,7 @@ public class MethodsForMenu {
 
     public void All_booking() {
         System.out.println("****** All_Bookings Detail *******");
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
+        try {
             Statement statement = connection.createStatement();
             String sql;
             // Query for display all students
@@ -167,7 +154,7 @@ public class MethodsForMenu {
 
     public void rooms_12() {
         System.out.println("***** Display all Rooms which are booked For December *****");
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
+        try {
             Statement statement = connection.createStatement();
             String sql;
             sql = "SELECT Room_ID, Check_in_Date, Check_out_Date FROM booking" +
@@ -187,9 +174,7 @@ public class MethodsForMenu {
 
     public void info_guest() {
         System.out.println("***** Get info Of any Guest *****");
-        try (Connection connection = DriverManager.getConnection(databaseUrl, connectionProperties)) {
-            Statement statement = connection.createStatement();
-
+        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter Guest Name: ");
             String name = scanner.nextLine();
@@ -201,7 +186,6 @@ public class MethodsForMenu {
                     " FROM guest INNER JOIN " +
                     "booking ON booking.Guest_ID = guest.GuestID " +
                     "WHERE guest.NAME = ? AND guest.Surname = ?";
-
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql); {
                 preparedStatement.setString(1, name);
