@@ -1,8 +1,9 @@
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class Main {
-    public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/hotel_management_team_blue";
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        String url = "jdbc:mysql://localhost:3306/hotel_management_project";
         //String url = "jdbc:mysql://localhost:3306/hotel_management_project";
 
         Properties properties = new Properties();
