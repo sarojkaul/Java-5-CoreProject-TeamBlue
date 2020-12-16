@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DataAccess {
 
-    private final String url = "jdbc:mysql://localhost:3306/teamblue";
+    private final String url = "jdbc:mysql://localhost:3306/hotel_management_project";
     private final String user = "root";
     private final String password = "";
     private final Connection connection;
@@ -91,7 +91,7 @@ public class DataAccess {
 
     public void displayAllBookings() {
         ArrayList<Booking> bookingList = getAllBookings();
-        System.out.println("All Bookings:");
+        System.out.println("All Bookings incl. Booked Rooms :");
         for (Booking booking : bookingList) {
             System.out.println(booking);
         }

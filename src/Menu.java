@@ -5,11 +5,13 @@ public class Menu {
     private final CancellationRepository cancellationRepository;
     private final GuestRepo guestRepo;
     private final MethodsForMenu methodsForMenu;
+    private final DataAccess dataAccess;
 
-    public Menu(CancellationRepository cancellationRepository, GuestRepo guestRepo, MethodsForMenu methodsForMenu) {
+    public Menu(CancellationRepository cancellationRepository, GuestRepo guestRepo, MethodsForMenu methodsForMenu, DataAccess dataAccess) {
         this.cancellationRepository = cancellationRepository;
         this.guestRepo = guestRepo;
         this.methodsForMenu = methodsForMenu;
+        this.dataAccess = dataAccess;
     }
 
     public void display_menu() {
@@ -34,10 +36,12 @@ public class Menu {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
+                            dataAccess.displayAllFreeRooms();
                             break;
                         }
                         case 2: {
                             System.out.println("Display all Booked_Rooms");
+                            dataAccess.displayAllBookings();
                             break;
                         }
                         case 3: {
