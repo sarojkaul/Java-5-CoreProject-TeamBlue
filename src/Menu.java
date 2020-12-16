@@ -46,7 +46,7 @@ public class Menu {
                         }
                         case 4: {
 
-
+                            //need to add here method for avaiable rooms_Id
                             methodsForMenu.Add_new_reservation();
                             System.out.println("");
                             break;
