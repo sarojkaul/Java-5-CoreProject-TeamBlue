@@ -91,31 +91,29 @@ public class MethodsForMenu {
 
         System.out.println("****** Cancel Booking ********");
 
-        String sql;
-        // Query for display all students
-        sql = "INSERT INTO `cancellation`(`Cancellation_ID`, `Cancellation_Date`, `Booking_ID`) VALUES(?,?,?)";
+        String sql = "INSERT INTO `cancellation`(`Cancellation_Date`, `Booking_ID`) VALUES(?,?)";
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter cancelation_ID: ");
-        int id = scanner.nextInt();
+        System.out.println("Enter Booking_ID want to cancel: ");
+        int booking_id = scanner.nextInt();
+        // Hack to consume the rest of the current line before reading the cancellation date.
+        // To see the difference, enter "1 999999" for the booking id
         scanner.nextLine();
+
         System.out.println("Enter cancellation date(\"MM/dd/yyyy\") : ");
         String cancellation_date = scanner.nextLine();
         LocalDate Cancellation_date = LocalDate.parse(cancellation_date, DATE_INPUT_FORMAT);
         System.out.println(Cancellation_date);
-        System.out.println("Enter Booking_ID want to cancel: ");
-        int booking_id = scanner.nextInt();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.setDate(2, Date.valueOf(Cancellation_date));
-            preparedStatement.setInt(3, booking_id);
+            preparedStatement.setDate(1, Date.valueOf(Cancellation_date));
+            preparedStatement.setInt(2, booking_id);
             preparedStatement.executeUpdate();
 
-            ResultSet generatedkey = preparedStatement.getGeneratedKeys();
-            if (!generatedkey.next()) {
+            ResultSet generatedKey = preparedStatement.getGeneratedKeys();
+            if (!generatedKey.next()) {
                 System.err.println("Database did not return generated booking ID");
             } else {
-                int generatedCancellationId = generatedkey.getInt(1);
+                int generatedCancellationId = generatedKey.getInt(1);
                 System.out.println("Saved Cancellation with cancellation_ID " + generatedCancellationId);
 
             }
