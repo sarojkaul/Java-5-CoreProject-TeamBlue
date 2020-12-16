@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class DataAccess {
 
@@ -14,6 +15,8 @@ public class DataAccess {
         System.out.println("Connecting to database...");
         connection = DriverManager.getConnection(url, user, password);
     }
+
+
 
     public void closeDB() throws SQLException {
         System.out.println("Closing connection...");
