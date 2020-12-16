@@ -21,9 +21,10 @@ public class Menu {
         System.out.println("4) Add new Reservation");
         System.out.println("5) Cancel Reservation");
         System.out.println("6) All_Guests Detail");
-        System.out.println("7  Display all rooms");
-        System.out.println("8) Display Rooms which are booked for December");
-        System.out.println("9) Exit");
+        System.out.println("7) Get info of any Guest");
+        System.out.println("8) Display all rooms");
+        System.out.println("9) Display Rooms which are booked for December");
+        System.out.println("10)Exit");
     }
 
     public void execute_menu() {
@@ -33,7 +34,7 @@ public class Menu {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your choice: ");
                 int x = user_input.nextInt();
-                if (x >= 0 && x <= 9) {
+                if (x >= 0 && x <= 10) {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
@@ -66,15 +67,19 @@ public class Menu {
                             break;
                         }
                         case 7: {
-                            methodsForMenu.All_rooms();
+                            System.out.println("Info of any guest");;
                             break;
                         }
                         case 8: {
+                            methodsForMenu.All_rooms();
+                            break;
+                        }
+                        case 9: {
                             methodsForMenu.rooms_12();
                             break;
                         }
 
-                        case 9: {
+                        case 10: {
                             System.out.println("Exit");
                             n = -2;
                         }
