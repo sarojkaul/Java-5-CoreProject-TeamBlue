@@ -1,4 +1,5 @@
 import java.io.File;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
@@ -69,8 +70,8 @@ public class Menu {
                             break;
                         }
                         case 7: {
-                            methodsForMenu.info_guest();
-                            break;
+                          methodsForMenu.info_guest();
+                          break;
                         }
                         case 8: {
                             methodsForMenu.All_rooms();

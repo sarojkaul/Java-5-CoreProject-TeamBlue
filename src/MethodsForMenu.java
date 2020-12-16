@@ -1,3 +1,6 @@
+import com.mysql.cj.result.SqlDateValueFactory;
+
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -117,7 +120,7 @@ public class MethodsForMenu {
                 System.out.println("Saved Cancellation with cancellation_ID " + generatedCancellationId);
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -195,9 +198,7 @@ public class MethodsForMenu {
                 int room = resultSet.getInt("Room_ID");
                 String City = resultSet.getString("City");
                 String number = resultSet.getString("Telephone_Number");
-                System.out.println("Name: " + name + " Surname: " + surname + "Room_no: " + room + "Address: " + City + "Contact_number: " + number);
-                preparedStatement.executeQuery();
-
+                System.out.println("Name: " + name + " Surname: " + surname + " Room_no: " + room + " Address: " + City + " Contact_number: " + number);
             }
 
         } catch (Exception e) {
