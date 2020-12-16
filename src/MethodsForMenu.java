@@ -9,13 +9,22 @@ import java.util.Scanner;
 public class MethodsForMenu {
 
     public static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-    private final String databaseUrl;
+    private String databaseUrl;
     private final Properties connectionProperties;
+    private final Connection connection;
 
-    public MethodsForMenu(String databaseUrl, Properties connectionProperties) {
+    public MethodsForMenu(String databaseUrl, Properties connectionProperties, Connection connection) {
         this.databaseUrl = databaseUrl;
         this.connectionProperties = connectionProperties;
+        this.connection = connection;
     }
+
+    public MethodsForMenu(Properties connectionProperties, Connection connection) {
+        this.connectionProperties = connectionProperties;
+        this.connection = connection;
+
+    }
+
 
     public void Add_new_reservation() {
         //Step:3 Open a connection
