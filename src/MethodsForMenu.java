@@ -109,7 +109,7 @@ public class MethodsForMenu {
                  PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
                 preparedStatement.setInt(1,id);
-               preparedStatement.setDate(2, Date.valueOf(cancellation_date));
+               preparedStatement.setDate(2, Date.valueOf(Cancellation_date));
                 preparedStatement.setInt(3, booking_id);
                 preparedStatement.executeUpdate();
 
@@ -118,7 +118,7 @@ public class MethodsForMenu {
                     System.err.println("Database did not return generated booking ID");
                 } else {
                     int generatedCancellationId = generatedkey.getInt(1);
-                    System.out.println("Saved Cancellation with cancellation_ID" + generatedCancellationId);
+                    System.out.println("Saved Cancellation with cancellation_ID " + generatedCancellationId);
 
                 }
             } catch (Exception e) {
