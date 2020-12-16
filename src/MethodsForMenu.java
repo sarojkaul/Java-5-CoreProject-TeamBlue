@@ -185,21 +185,21 @@ public class MethodsForMenu {
                     "booking ON booking.Guest_ID = guest.GuestID " +
                     "WHERE guest.NAME = ? AND guest.Surname = ?";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql); {
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, surname);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                List<Guest> guests = new ArrayList<>();
-                while (resultSet.next()) {
-                    guests.add(new Guest(name, surname));
-                    int room = resultSet.getInt("Room_ID");
-                    String City = resultSet.getString("City");
-                    String number = resultSet.getString("Telephone_Number");
-                    System.out.println("Name: " +name +" Surname: " +surname +"Room_no: " +room +"Address: " +City +"Contact_number: " +number );
-                    preparedStatement.executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surname);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Guest> guests = new ArrayList<>();
+            while (resultSet.next()) {
+                guests.add(new Guest(name, surname));
+                int room = resultSet.getInt("Room_ID");
+                String City = resultSet.getString("City");
+                String number = resultSet.getString("Telephone_Number");
+                System.out.println("Name: " + name + " Surname: " + surname + "Room_no: " + room + "Address: " + City + "Contact_number: " + number);
+                preparedStatement.executeQuery();
 
-                }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

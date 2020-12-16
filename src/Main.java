@@ -5,10 +5,7 @@ import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) {
-        // Please comment out and uncomment the right line if your database has a different name
-        // And don't commit that change!
-        String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_team_blue";
-        //String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_project";
+        String databaseUrl = "jdbc:mysql://localhost:3306/hotel_management_project";
 
         Properties connectionProperties = new Properties();
         connectionProperties.put("user", "root");
