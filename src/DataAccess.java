@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class DataAccess {
 
-    private final String url = "jdbc:mysql://localhost:3306/teamblue";
+    private final String url = "jdbc:mysql://localhost:3306/hotel_management_project";
     private final String user = "root";
     private final String password = "";
     private final Connection connection;
@@ -94,9 +94,9 @@ public class DataAccess {
 
     public void displayAllBookings() {
         ArrayList<Booking> bookingList = getAllBookings();
-        System.out.println("All Bookings:");
+        System.out.println("All Booked Rooms :");
         for (Booking booking : bookingList) {
-            System.out.println(booking);
+            System.out.println("Room_Id: " + booking.getRoomID()  + " | " + " rented by Guest_Id: "  +  booking.getGuestID() + " | " + " Check_In_date: " + booking.getCheckInDate() + " | " + " Check_out_date: " + booking.getCheckOutDate());
         }
     }
 
@@ -111,7 +111,7 @@ public class DataAccess {
             }
         }
         for (Room room : roomList) {
-            System.out.println(room);
+            System.out.println("ROOM_Id " + room.getRoomID() + " Category " + room.getCategory() + " Price: " + room.getPrice());
         }
     }
 

@@ -10,14 +10,23 @@ public class Main {
         properties.put("user", "root");
         properties.put("password", "");
 
-        CancellationRepository cancellationRepository = new CancellationRepository(url, properties);
-        GuestRepo guestRepo = new GuestRepo(url, properties);
-        MethodsForMenu methodsForMenu = new MethodsForMenu(url, properties);
+        try {
+            CancellationRepository cancellationRepository = new CancellationRepository(url, properties);
+            GuestRepo guestRepo = new GuestRepo(url, properties);
+            MethodsForMenu methodsForMenu = new MethodsForMenu(url, properties);
+            DataAccess dataAccess = new DataAccess();
 
-        Menu menu = new Menu(cancellationRepository, guestRepo, methodsForMenu);
-        menu.printHeader();
-        menu.display_menu();
-        menu.execute_menu();
+            Menu menu = new Menu(cancellationRepository, guestRepo, methodsForMenu, dataAccess);
+            menu.printHeader();
+            menu.display_menu();
+            menu.execute_menu();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
 }
