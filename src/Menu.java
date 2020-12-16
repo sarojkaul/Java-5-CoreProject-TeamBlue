@@ -54,7 +54,7 @@ public class Menu {
                             break;
                         }
                         case 4: {
-
+                            System.out.println("****** These Rooms are Available *****");
                             dataAccess.displayAllFreeRooms();
                             methodsForMenu.Add_new_reservation();
 
@@ -112,6 +112,7 @@ public class Menu {
         System.out.println("Please input the path of the output file: ");
         File outputFileName = new File(scanner.nextLine());
         guestRepo.createAllGuestReport(outputFileName);
+
     }
 
     public void printHeader() {
