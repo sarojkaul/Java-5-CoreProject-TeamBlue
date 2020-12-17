@@ -2,12 +2,10 @@ import com.mysql.cj.result.SqlDateValueFactory;
 
 import java.io.IOException;
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class MethodsForMenu {
 
@@ -215,6 +213,35 @@ public class MethodsForMenu {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+        public void update_booking(){
+            System.out.println("****** Udate Booking *******");
+            String sql = "UPDATE `booking` SET `Check_in_Date`= ?," +
+                    "`Check_out_Date`=?" +
+                    "WHERE Booking_ID = ?";
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Enter Booking Id want to update : ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Enter Check_In date(\"MM/dd/yyyy\"12");
+                String check_In = scanner.nextLine();
+                LocalDate Check_In = LocalDate.parse(check_In,DATE_INPUT_FORMAT);
+                System.out.println(Check_In);
+                System.out.println("Enter check_out date: ");
+                String check_out = scanner.nextLine();
+                LocalDate Check_out = LocalDate.parse(check_out,DATE_INPUT_FORMAT);
+                System.out.println(Check_out);
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setDate(1, Date.valueOf(Check_In));
+                statement.setDate(2, Date.valueOf(Check_out));
+               statement.setInt(3,id);
+
+                statement.executeUpdate();
+            }catch (Exception e){
+                e.printStackTrace();
+        }
+            System.out.println(" Sucessfully updated!!!!!");
     }
 }
 

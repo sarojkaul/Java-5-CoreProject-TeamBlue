@@ -26,6 +26,8 @@ public class DataAccess {
                 String category = rs.getString("Category");
                 roomCategory cat = roomCategory.valueOf(category.toUpperCase());
 
+
+
                 /*
 
                 int has_wlan = rs.getInt("Has_Wlan");
