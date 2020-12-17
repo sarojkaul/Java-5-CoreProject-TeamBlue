@@ -56,7 +56,8 @@ INSERT INTO `booking` (`Booking_ID`, `Check_in_Date`, `Check_out_Date`, `Guest_I
 CREATE TABLE `cancellation` (
   `Cancellation_ID` int(11) NOT NULL,
   `Cancellation_Date` date NOT NULL,
-  `Booking_ID` int(11) DEFAULT NULL
+  `Booking_ID` int(11) DEFAULT NULL,
+  UNIQUE (Booking_ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
