@@ -1,6 +1,3 @@
-import com.mysql.cj.result.SqlDateValueFactory;
-
-import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -66,7 +63,6 @@ public class MethodsForMenu {
 
         System.out.println("Successfully updated!!");
     } // end Add_new_reservation
-
 
 
     public void All_rooms() {
@@ -135,12 +131,12 @@ public class MethodsForMenu {
             Statement statement = connection.createStatement();
             String sql =
                     "SELECT booking.Booking_ID, " +
-                    " booking.Check_in_Date, booking.Check_out_Date, " +
-                    " booking.Guest_ID,guest.NAME,guest.Surname,booking.Room_ID," +
-                    " cancellation.Cancellation_Date " +
-                    "FROM booking" +
-                    " JOIN guest ON booking.Guest_ID = guest.GuestID" +
-                    " LEFT JOIN cancellation ON cancellation.Booking_ID = booking.Booking_ID";
+                            " booking.Check_in_Date, booking.Check_out_Date, " +
+                            " booking.Guest_ID,guest.NAME,guest.Surname,booking.Room_ID," +
+                            " cancellation.Cancellation_Date " +
+                            "FROM booking" +
+                            " JOIN guest ON booking.Guest_ID = guest.GuestID" +
+                            " LEFT JOIN cancellation ON cancellation.Booking_ID = booking.Booking_ID";
             ResultSet resultSet = statement.executeQuery(sql);
             System.out.println("Booking ID | Check-in date | Check-out date | Cancellation Date | Guest ID | Booked by            | Surname              | Booked Room ID ");
             System.out.println("-----------+---------------+----------------+-------------------+----------+----------------------+----------------------+----------------");
@@ -153,6 +149,9 @@ public class MethodsForMenu {
                 String surname = resultSet.getString("Surname");
                 int roomId = resultSet.getInt("Room_ID");
                 Date cancellationDate = resultSet.getDate("Cancellation_Date");
+
+                // a place holder for a number from argument list, %s is for an object, toString() method to convert, object.to String is to the null object is not shown
+
                 System.out.printf("%10d | %13s | %14s | %17s | %8d | %20s | %20s | %14d%n",
                         bookingId, checkInDate, checkOutDate, Objects.toString(cancellationDate, ""), guestId, guestName, surname, roomId);
             }
@@ -170,11 +169,14 @@ public class MethodsForMenu {
             sql = "SELECT Room_ID, Check_in_Date, Check_out_Date FROM booking" +
                     " WHERE booking.Check_in_Date BETWEEN \"2020-12-01\" AND \"2020-12-31\"";
             ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("Room_ID | Check-in date | Check-out date ");
+            System.out.println("--------+---------------+---------------");
             while (resultSet.next()) {
                 int room_id = resultSet.getInt("Room_ID");
                 Date check_In_date = resultSet.getDate("Check_in_Date");
                 Date check_out_date = resultSet.getDate("Check_out_Date");
-                System.out.println("Room_Id: " + room_id + " | " + " Check_In_date: " + check_In_date + " | " + " Check_out_date: " + check_out_date);
+                System.out.printf("%7d | %13s | %14s%n",
+                        room_id, check_In_date, check_out_date);
             }
 
         } catch (Exception e) {
@@ -183,7 +185,7 @@ public class MethodsForMenu {
     }
 
     public void info_guest() {
-        System.out.println("***** Get info Of any Guest *****");
+        System.out.println("***** Show Bookings of a Guest *****");
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter Guest Name: ");
@@ -202,12 +204,15 @@ public class MethodsForMenu {
             preparedStatement.setString(2, surname);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Guest> guests = new ArrayList<>();
+            System.out.println("Name       | Surname    | Room_no. | City       |  Phone Number ");
             while (resultSet.next()) {
                 guests.add(new Guest(name, surname));
                 int room = resultSet.getInt("Room_ID");
                 String City = resultSet.getString("City");
                 String number = resultSet.getString("Telephone_Number");
-                System.out.println("Name: " + name + " Surname: " + surname + " Room_no: " + room + " Address: " + City + " Contact_number: " + number);
+
+                System.out.printf("%10s | %10s | %8s | %10s | %14s%n",
+                        name, surname, room, City, number);
             }
 
         } catch (Exception e) {
