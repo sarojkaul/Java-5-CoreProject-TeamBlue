@@ -229,11 +229,11 @@ public class MethodsForMenu {
                 System.out.println("Enter Booking Id want to update : ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Enter Check_In date(\"MM/dd/yyyy\"12");
+                System.out.println("Enter New Check_In date(MM/dd/yyyy");
                 String check_In = scanner.nextLine();
                 LocalDate Check_In = LocalDate.parse(check_In,DATE_INPUT_FORMAT);
                 System.out.println(Check_In);
-                System.out.println("Enter check_out date: ");
+                System.out.println("Enter New check_out date: ");
                 String check_out = scanner.nextLine();
                 LocalDate Check_out = LocalDate.parse(check_out,DATE_INPUT_FORMAT);
                 System.out.println(Check_out);
