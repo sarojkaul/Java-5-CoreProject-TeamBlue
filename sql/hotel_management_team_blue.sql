@@ -128,7 +128,7 @@ INSERT INTO `guest` (`GuestID`, `NAME`, `Surname`, `Email`, `Telephone_Number`, 
 (21, 'Ivanka', 'Trump', 'i.trunmp@gmail.com', '0016502449900', 'Westborough Blvd', '278', 'CA94080', 'San Francisco', 'United States', 'US1232425', 'Female', 'USA', '1981-10-31', 3),
 (22, 'Shreya ', 'Ghoshal', 's.ghoshal@live.com', NULL, 'Panmaqtha, Rangareddy', '83/1', '500032', 'Telangana', 'India', 'i34567891', 'Female', 'IND', '1984-03-21', 4),
 (23, 'Ernst', 'Fuchs', 'e.fuchs@gmx.com', '0043660 5779831', 'Wagramer Str. ', '94', '1220', 'Vienna', 'Austria', 'a67774993', 'Male', 'AUT', '1930-02-13', 5),
-(24, 'Adele Laurie Blue  ', 'Adkins', 'a.adele@gmail.com', '00441925555129', 'Market Building, The Piazza, Covent Garden', '24', 'WC2E 8RD', 'London', 'United Kingdom', 'n45687443', 'Female', 'GBR', '1988-05-05', 6);
+(24, 'Adele Laurie', 'Adkins', 'a.adele@gmail.com', '00441925555129', 'Market Building, The Piazza, Covent Garden', '24', 'WC2E 8RD', 'London', 'United Kingdom', 'n45687443', 'Female', 'GBR', '1988-05-05', 6);
 
 -- --------------------------------------------------------
 

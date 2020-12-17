@@ -30,7 +30,8 @@ public class GuestRepo {
 
             try (PreparedStatement statement = connection.prepareStatement(sql);
                  ResultSet resultSet = statement.executeQuery()) {
-
+                System.out.println("Guest ID | Name            | Surname    | Gender | Telephone Number | Nationality ");
+                System.out.println("--------+-------+---------+--------+------------------+-------------+-------------");
                 while (resultSet.next()) {
                     String Name = resultSet.getString("NAME");
                     String Surname = resultSet.getString("Surname");
@@ -38,8 +39,8 @@ public class GuestRepo {
                     String Telephone_Number = resultSet.getString("Telephone_Number");
                     String Gender = resultSet.getString("Gender");
                     String Nationality = resultSet.getString("Nationality");
-                    System.out.println(String.join(" | ", "" + Guest_ID, Name, Surname, Gender,
-                            "" + Telephone_Number, Nationality));
+                    System.out.printf("%8d | %15s | %10s | %6s | %16s | %11s%n",
+                            Guest_ID, Name, Surname, Gender, Telephone_Number,Nationality);
                 }
             }
         } catch (SQLException e) {

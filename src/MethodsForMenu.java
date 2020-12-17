@@ -74,12 +74,14 @@ public class MethodsForMenu {
             // Query for display all students
             sql = "SELECT `Room_ID`,`Category`,`Price` FROM `room`";
             ResultSet set = statement.executeQuery(sql);
+            System.out.println("Room ID | Category  | Price ");
+            System.out.println("--------+-----------+---------");
             while (set.next()) {
                 int room_Id = set.getInt("Room_ID");
                 String category = set.getString("Category");
                 long price = set.getLong("Price");
-                System.out.println("ROOM_Id " + room_Id + " Category " + category + " Price: " + price);
-
+                System.out.printf("%5d   | %10s | %5d%n",
+                        room_Id, category, price);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -205,6 +207,7 @@ public class MethodsForMenu {
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Guest> guests = new ArrayList<>();
             System.out.println("Name       | Surname    | Room_no. | City       |  Phone Number ");
+            System.out.println("-----------+------------+----------+------------+----------------");
             while (resultSet.next()) {
                 guests.add(new Guest(name, surname));
                 int room = resultSet.getInt("Room_ID");
