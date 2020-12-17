@@ -26,9 +26,10 @@ public class Menu {
         System.out.println("7)  All_Guests Detail");
         System.out.println("8)  Get info of any Guest");
         System.out.println("9)  Display all rooms");
-        System.out.println("10)  Display Rooms which are booked for December");
+        System.out.println("10) Display Rooms which are booked for December");
         System.out.println("11) Create Report with all Guests");
-        System.out.println("12) Exit");
+        System.out.println("12) Update Booking");
+        System.out.println("13) Exit");
     }
 
     public void execute_menu() {
@@ -68,6 +69,7 @@ public class Menu {
                         case 6: {
                             methodsForMenu.All_booking();
                             methodsForMenu.cancellation();
+
                             break;
                         }
                         case 7: {
@@ -92,8 +94,13 @@ public class Menu {
                             createAllGuestReport();
                             break;
                         }
-
                         case 12: {
+                            methodsForMenu.All_booking();
+                            methodsForMenu.update_booking();
+                            break;
+                        }
+
+                        case 13: {
                             System.out.println("Exit");
                             n = -2;
                         }
