@@ -187,7 +187,7 @@ public class MethodsForMenu {
     }
 
     public void info_guest() {
-        System.out.println("***** Get info Of any Guest *****");
+        System.out.println("***** Show Bookings of a Guest *****");
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter Guest Name: ");
