@@ -1,5 +1,4 @@
 import java.io.File;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
@@ -24,7 +23,7 @@ public class Menu {
         System.out.println("5)  Add new Guest");
         System.out.println("6)  Cancel Reservation");
         System.out.println("7)  All_Guests Detail");
-        System.out.println("8)  Get info of any Guest");
+        System.out.println("8)  Show Bookings of a Guest");
         System.out.println("9)  Display all rooms");
         System.out.println("10) Display Rooms which are booked for December");
         System.out.println("11) Create Report with all Guests");
@@ -62,7 +61,7 @@ public class Menu {
 
                             break;
                         }
-                        case 5:{
+                        case 5: {
                             guestRepo.addNewGuest();
                             break;
                         }
@@ -77,14 +76,14 @@ public class Menu {
                             break;
                         }
                         case 8: {
-                          methodsForMenu.info_guest();
-                          break;
+                            methodsForMenu.info_guest();
+                            break;
                         }
                         case 9: {
                             methodsForMenu.All_rooms();
                             break;
                         }
-                        
+
                         case 10: {
                             methodsForMenu.rooms_12();
                             break;
@@ -120,7 +119,7 @@ public class Menu {
         cancellationRepository.displayAllCancellation();
     }
 
-    private void createAllGuestReport(){
+    private void createAllGuestReport() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input the path of the output file: ");
         File outputFileName = new File(scanner.nextLine());

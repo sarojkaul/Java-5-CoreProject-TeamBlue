@@ -61,7 +61,6 @@ public class DataAccess {
                 Date checkOutDate = rs.getDate("Check_out_Date");
 
 
-
                 bookingList.add(new Booking(bookingID, roomID, guestID, checkInDate, checkOutDate));
             }
             rs.close();
@@ -84,7 +83,7 @@ public class DataAccess {
         ArrayList<Booking> bookingList = getAllBookings();
         System.out.println("All Booked Rooms :");
         for (Booking booking : bookingList) {
-            System.out.println("Room_Id: " + booking.getRoomID()  + " | " + " rented by Guest_Id: "  +  booking.getGuestID() + " | " + " Check_In_date: " + booking.getCheckInDate() + " | " + " Check_out_date: " + booking.getCheckOutDate());
+            System.out.println("Room_Id: " + booking.getRoomID() + " | " + " rented by Guest_Id: " + booking.getGuestID() + " | " + " Check_In_date: " + booking.getCheckInDate() + " | " + " Check_out_date: " + booking.getCheckOutDate());
         }
     }
 
