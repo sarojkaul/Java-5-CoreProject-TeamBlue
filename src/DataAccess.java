@@ -97,8 +97,16 @@ public class DataAccess {
                 e.getMessage();
             }
         }
+
+        printListOfFreeRooms(roomList);
+    }
+
+    public static void printListOfFreeRooms(ArrayList<Room> roomList) {
+        System.out.println("Room ID | Category   | Price");
+        System.out.println("--------+------------+-----------");
         for (Room room : roomList) {
-            System.out.println("ROOM_Id " + room.getRoomID() + " Category " + room.getCategory() + " Price: " + room.getPrice());
+            System.out.printf("%5d   | %10s | %7.2f%n",
+                        room.getRoomID(), room.getCategory(), room.getPrice());
         }
     }
 
