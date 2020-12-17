@@ -38,7 +38,7 @@ public class Menu {
                 Scanner user_input = new Scanner(System.in);
                 System.out.println("Enter Your choice: ");
                 int x = user_input.nextInt();
-                if (x >= 0 && x <= 12) {
+                if (x >= 0 && x <= 13) {
                     switch (x) {
                         case 1: {
                             System.out.println("Display all Available Rooms");
