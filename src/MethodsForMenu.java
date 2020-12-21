@@ -274,8 +274,10 @@ public class MethodsForMenu {
             preparedStatement.setDate(2,Date.valueOf(Check_out_date));
             int count = 0;
             ResultSet rs = preparedStatement.executeQuery();
+            System.out.println("***** All Available Rooms  ****");
             while (rs.next()){
                 count++;
+
                 System.out.println("Room_id" +rs.getInt("Room_ID") +" Category " +rs.getString("Description") +" Price " +rs.getBigDecimal("Price"));
             }
             if(count ==0){
