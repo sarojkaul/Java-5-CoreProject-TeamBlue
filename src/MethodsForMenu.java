@@ -80,7 +80,8 @@ public class MethodsForMenu {
                 int room_Id = set.getInt("Room_ID");
                 String category = set.getString("Category");
                 long price = set.getLong("Price");
-                System.out.printf("%5d   | %10s | %5d%n",
+                System.out.printf("%5d   | %10s | " +
+                                "",
                         room_Id, category, price);
             }
         } catch (Exception e) {
@@ -251,6 +252,42 @@ public class MethodsForMenu {
         }
             System.out.println(" Sucessfully updated!!!!!");
     }
+    public void check_availability() {
+        System.out.println("***** Check room availability *******");
+        String sql = "SELECT room.Room_ID, room.Size, room.Description," +
+                " room.Price FROM room WHERE room.Room_ID NOT IN" +
+                "( SELECT booking.Room_ID FROM booking " +
+                "WHERE booking.Check_in_Date AND booking.Check_out_Date " +
+                "BETWEEN ? AND ?)";
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter Check_in date");
+            String check_in = scanner.nextLine();
+            LocalDate Check_In = LocalDate.parse(check_in,DATE_INPUT_FORMAT);
+            System.out.println(Check_In);
+            System.out.println("Enter Check_out Date");
+            String check_out = scanner.nextLine();
+            LocalDate Check_out_date = LocalDate.parse(check_out,DATE_INPUT_FORMAT);
+            System.out.println(Check_out_date);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDate(1, Date.valueOf(Check_In));
+            preparedStatement.setDate(2,Date.valueOf(Check_out_date));
+            int count = 0;
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                count++;
+                System.out.println("Room_id" +rs.getInt("Room_ID") +" Category " +rs.getString("Description") +" Price " +rs.getBigDecimal("Price"));
+            }
+            if(count ==0){
+                System.out.println("Sorry! No room Available");
+            }
+        }catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+
+    }
+
 }
 
 

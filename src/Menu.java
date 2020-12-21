@@ -55,8 +55,9 @@ public class Menu {
                             break;
                         }
                         case 4: {
-                            System.out.println("****** These Rooms are Available *****");
-                            dataAccess.displayAllFreeRooms();
+
+                            methodsForMenu.check_availability();
+                            System.out.println("**** Book Your Reservation *****");
                             methodsForMenu.Add_new_reservation();
 
                             break;
