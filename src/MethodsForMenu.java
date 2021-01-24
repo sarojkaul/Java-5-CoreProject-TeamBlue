@@ -79,9 +79,8 @@ public class MethodsForMenu {
             while (set.next()) {
                 int room_Id = set.getInt("Room_ID");
                 String category = set.getString("Category");
-                long price = set.getLong("Price");
-                System.out.printf("%5d   | %10s | " +
-                                "",
+                double price = set.getLong("Price");
+                System.out.printf("%5d   | %10s | %7.2f%n" ,
                         room_Id, category, price);
             }
         } catch (Exception e) {
@@ -269,7 +268,7 @@ public class MethodsForMenu {
             String check_out = scanner.nextLine();
             LocalDate Check_out_date = LocalDate.parse(check_out,DATE_INPUT_FORMAT);
             System.out.println(Check_out_date);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setDate(1, Date.valueOf(Check_In));
             preparedStatement.setDate(2,Date.valueOf(Check_out_date));
             int count = 0;
@@ -278,7 +277,7 @@ public class MethodsForMenu {
             while (rs.next()){
                 count++;
 
-                System.out.println("Room_id" +rs.getInt("Room_ID") +" Category " +rs.getString("Description") +" Price " +rs.getBigDecimal("Price"));
+                System.out.println("Room_id: " +rs.getInt("Room_ID") +" | " +" Category: " +rs.getString("Description") +" | "+" Price: " +rs.getBigDecimal("Price"));
             }
             if(count ==0){
                 System.out.println("Sorry! No room Available");
@@ -289,6 +288,25 @@ public class MethodsForMenu {
         }
 
     }
+    /*public void userPassword(){
+        try{
+            System.out.println("Enter UserName: ");
+            Scanner scanner = new Scanner(System.in);
+            String username = scanner.nextLine();
+            System.out.println("Enter Password: ");
+            String password = scanner.nextLine();
+            PreparedStatement passwordDatabase = connection.prepareStatement("SELECT login.PASSWORD1 from login");
+             ResultSet set = passwordDatabase.executeQuery();
+             PreparedStatement userName = connection.prepareStatement("SELECT username FROM login");
+             if(passwordDatabase.equals(password)){
+
+
+             }
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+    }*/
 
 }
 

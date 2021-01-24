@@ -28,6 +28,7 @@ public class DataAccess {
 
 
 
+
                 /*
 
                 int has_wlan = rs.getInt("Has_Wlan");
